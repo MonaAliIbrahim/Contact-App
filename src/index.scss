@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'JostMeduim';
+    src: url('../src/assets/fonts/Jost/static/Jost-Medium.ttf') format('ttf');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'JostBold';
+    src: url('./assets/fonts/Jost/static/Jost-Bold.ttf') format("ttf");
+    font-weight: bold;
+  }
+
+  @font-face {
+    font-family: 'JostExtraBold';
+    src: url('./assets/fonts/Jost/static/Jost-ExtraBold.ttf') format("ttf");
+    font-weight: bolder;
+  }
+}
+
+@layer utilities {
+  .register-card {
+    @apply z-10 p-6 mx-3 w-screen max-w-[500px] sm:w-10/12 md:w-[500px] opacity-[0.92] shadow-md shadow-blue-gray-100;
+  }
+
+  .form-label {
+    @apply bg-white px-2 w-auto h-auto z-10 left-[10px] top-[-10px] leading-[11px] after:content-none;
+  }
+
+  .form-input {
+    @apply border rounded-md p-2 bg-white autofill:bg-white;
+  }
+
+  .activeLink > svg {
+    @apply text-red-800;
+  }
+
+  .activeChat > div:not(:first-child) {
+    @apply bg-red-800 brightness-[0.83] hover:bg-transparent;
+  }
+
+  .attach-btn {
+    @apply text-primary bg-blue-gray-50 hover:bg-red-800 hover:text-white;
+  }
+
+  .chat-dialog {
+    @apply text-gray-900 w-auto mb-3 p-4 rounded-lg shadow-sm selection:bg-red-900 selection:text-white;
+  }
+
+  .user-info {
+    @apply flex flex-col sm:flex-row items-baseline justify-center gap-x-3 mb-3;
+  }
+}
+
+body {
+  * {
+    font-family: 'JostMeduim' !important;
+  }
+}
+
+article {
+  * > :is(h1, h2, h3) {
+    font-family: 'JostBold';
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-button {
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #155e75;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: #155e75;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-button {
+  background-color: #eee;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+}
+
