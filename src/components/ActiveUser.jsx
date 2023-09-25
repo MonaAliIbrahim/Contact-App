@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogHeader, DialogBody, Typography, Popover,PopoverHandler,PopoverContent } from "@material-tailwind/react";
 
-export default function ActiveUser({open, toggleMenu}) {
-
-  const user = {
-    name: 'Sara Ahmed', position: 'Front-End Developer', email: 'sara.ali@gmail.com', 
-    image: 'https://geekflare.com/wp-content/uploads/2023/06/What-is-an-AI-avatar.jpg',
-  }
+export default function ActiveUser({open, toggleMenu, user}) {
 
   const [openPopover, setOpenPopover] = useState(false);
  
@@ -54,11 +49,15 @@ export default function ActiveUser({open, toggleMenu}) {
             Text Copied
           </PopoverContent>
         </Popover>
+        <Typography variant="h6" className="text-gray-800">
+          {user.phone}
+        </Typography>
       </DialogHeader>
       <DialogBody className="p-0 rounded-b-lg">
-        <img alt="Active User"
-          className="max-h-[500px] w-full object-cover object-center rounded-b-lg"
+        <img 
           src={user.image}
+          alt="User"
+          className="max-h-[500px] w-full object-cover object-center rounded-b-lg"
         />
       </DialogBody>
     </Dialog>

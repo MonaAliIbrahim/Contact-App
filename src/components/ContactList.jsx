@@ -9,7 +9,7 @@ export default function ContactList() {
   const [activeTab, setActiveTab] = useState('all');
   const tabs = [
     { label: "All", value: "all"},
-    { label: "Unread", value: "unread"},
+    { label: "Active", value: "active"},
   ];
 
   return (
@@ -53,9 +53,9 @@ export default function ContactList() {
             <TabPanel value='all' className="!p-0">
               <ContactCard type='all' searchValue={searchValue}/>
             </TabPanel>}
-          {activeTab === 'unread' &&
-            <TabPanel value='unread' className="!p-0">
-              <ContactCard type='unread' searchValue={searchValue}/>
+          {activeTab === 'active' &&
+            <TabPanel value='active' className="!p-0">
+              <ContactCard type='active' searchValue={searchValue}/>
             </TabPanel>}
         </TabsBody>
       </Tabs>

@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 import Register from "../../pages/Register";
 import SignUp from '../../components/Signup';
 import Login from '../../components/Login';
@@ -10,18 +11,30 @@ const Settings = lazy(() => import('../../pages/Settings'));
 const Terms = lazy(() => import('../../pages/Terms'));
 
 export const routes= createBrowserRouter([
-  { path: "", redirectTo: <MasterLayout/> },
-  { path: "/", element: <MasterLayout/>, errorElement: <Home/>, children: 
-    [
+  { 
+    path: "", redirectTo: <ProtectedRoute><MasterLayout/></ProtectedRoute>
+  },
+  { 
+    path: "/",
+    element: <ProtectedRoute><MasterLayout/></ProtectedRoute>,
+    errorElement: <Home/>,
+    children: [
       { index: true, element: <Home/> },
       { path: '/settings', element: <Settings/> },
     ]
   },
-  { path: "register", element: <Register/>, children: [
+  { 
+    path: "register", 
+    element: <Register/>,
+    children: [
       { index: true, element: <Login/> },
       { path: '/register/signup', element: <SignUp/> },
     ]
   },
-  { path: "terms-of-service", element: <Terms/> },
-  { path: '*', element: <PageNotFound/> }
+  { 
+    path: "terms-of-service", element: <Terms/> 
+  },
+  { 
+    path: '*', element: <PageNotFound/> 
+  }
 ]);

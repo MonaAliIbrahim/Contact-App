@@ -48,7 +48,7 @@
   }
 
   .chat-dialog {
-    @apply text-gray-900 w-auto mb-3 p-4 rounded-lg shadow-sm selection:bg-red-900 selection:text-white;
+    @apply text-gray-900 w-auto mb-3 px-4 py-2 clear-both rounded-lg shadow-sm selection:bg-red-900 selection:text-white;
   }
 
   .user-info {

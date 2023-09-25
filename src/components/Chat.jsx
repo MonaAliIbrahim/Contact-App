@@ -1,52 +1,73 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useContext, useEffect, useRef } from "react";
 import { 
   Card, CardHeader, CardBody, CardFooter, Input, IconButton, SpeedDial, Chip, SpeedDialHandler,
   SpeedDialContent, SpeedDialAction, Typography, Avatar, Button, Menu, MenuHandler, MenuList, MenuItem
 } from "@material-tailwind/react";
-import { 
-  MicrophoneIcon, PhotoIcon, DocumentPlusIcon, EllipsisVerticalIcon, MagnifyingGlassIcon 
+import {
+  PhotoIcon, DocumentPlusIcon, EllipsisVerticalIcon, MagnifyingGlassIcon 
 } from "@heroicons/react/24/solid";
-import { PlusIcon } from "@heroicons/react/24/outline";
+import { PlusIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
+import { ContactContext } from "../shared/Services/ContactstStore";
+import { MessageContext } from "../shared/Services/MessageStore";
 import AvatarPlaceholder from "../assets/images/avatars/avatar2.svg";
 import ActiveUser from "./ActiveUser";
 import MediaDrawer from "./MediaDrawer";
+import DefaultChat from './DefaultChat';
 import Message from './Message';
 
 export default function Chat() {
 
-  const user = {
-    name: 'Sara Ali', position: 'Front-End Developer', email: 'sara.ali@gmail.com', active: false,
-    image: 'https://geekflare.com/wp-content/uploads/2023/06/What-is-an-AI-avatar.jpg',
-  }
-
+  const { activeContact } = useContext(ContactContext);
+  const { sendMessageService, updateMessageService, messages } = useContext(MessageContext);
   const [mediaType, setMediaType] = useState(null);
-
   const [openMenu, setOpenMenu] = useState(false);
   const toggleMenu = () => setOpenMenu(!openMenu);
-
   const [openDrawer, setOpenDrawer] = useState(false);
   const toggleDrawer = () => setOpenDrawer(!openDrawer);
+  const[message, setMessage] = useState('');
+  const inputRef = useRef();
+
+  inputRef.current?.addEventListener("keyup", (event) => {
+    if(event.key === "Enter") {
+      sendMessage();
+    }
+  });
+
+  const sendMessage = () => {
+    if(message.trim() !== "") {
+      sendMessageService(message);
+      setMessage('');
+    }
+  }
+
+  useEffect(() => {
+    updateMessageService();
+  }, [])
 
   return (
+    !activeContact ? <DefaultChat/> :
     <Fragment>
       <Card className="relative flex flex-col h-[calc(100%-24px)] min-w-[350px] m-3 ml-2 rounded-lg bg-secondary">
         <CardHeader className="m-2 p-2 pb-3 overflow-visible rounded-md bg-transparent shadow-lg shadow-gray-900/10">
           <div className="flex items-center">
             <Button onClick={toggleMenu} variant="outlined" className="p-0 border-0 !outline-none">
-              <Avatar src={AvatarPlaceholder} alt="Contact Avatar" size="md" className="w-auto max-h-14"/>
+              <Avatar 
+                src={activeContact.image ? activeContact.image : AvatarPlaceholder} 
+                alt="Contact Avatar" size="md" className="w-12 h-12"
+              />
             </Button>
             <div className='grow'>
-              <Typography variant="h4" className="font-semibold text-[16px] text-gray-900 px-2">
-                Sara
+              <Typography variant="h4" className="capitalize font-semibold text-[16px] text-gray-900 px-2">
+                {activeContact.name}
               </Typography>
               <Chip 
                 variant="outlined" size="sm" className="border-0 px-1"
-                value={user.active ? 'Online' : 'Offline'} 
-                color={user.active ? 'green' : 'red'}   
+                value={activeContact.active ? 'Online' : 'Offline'} 
+                color={activeContact.active ? 'green' : 'red'}   
                 icon={
                   <span className={`
                     mx-auto mt-1 block h-2 w-2 rounded-full content-[''] 
-                    ${user.active ? 'bg-green-900' : 'bg-red-900'}
+                    ${activeContact.active ? 'bg-green-900' : 'bg-red-900'}
                   `}/>
                 }/>
             </div>
@@ -69,7 +90,7 @@ export default function Chat() {
           </div>
         </CardHeader>
         <CardBody className="order-2 z-10 grow self-stretch overflow-y-auto m-2 ml-1 p-2 pb-1">
-          <Message/>
+          <Message messages={messages}/>
         </CardBody>
         <CardFooter className="order-3 z-20 self-end mx-2 p-2 w-[calc(100%-16px)] rounded-md bg-white">
           <div className="relative flex">
@@ -92,29 +113,23 @@ export default function Chat() {
             </div>
             <Input
               type="text"
+              value={message}
+              ref={inputRef}
               className="px-9 focus:!border-blue-gray-300"
               placeholder="Type your message..."
               labelProps={{className: "hidden"}}
               containerProps={{className: "min-w-0"}}
+              onChange={(e) => setMessage(e.target.value)}
             />
             <div className="!absolute right-1 top-1 rounded-full border-0 shadow-none z-10">
-              <SpeedDial>
-                <SpeedDialHandler>
-                  <IconButton color="white" size="sm" className="rounded-full">
-                    <MicrophoneIcon className="w-5 h-5 text-blue-gray-800 transition-transform group-hover:scale-105" />
-                  </IconButton>
-                </SpeedDialHandler>
-                <SpeedDialContent className="rounded-full border border-blue-gray-50 bg-white shadow-xl shadow-black/10 gap-y-0">
-                  <SpeedDialAction className="attach-btn hover:!scale-100">
-                    <PhotoIcon className="h-5 w-5"/>
-                  </SpeedDialAction>
-                </SpeedDialContent>
-              </SpeedDial>
+              <IconButton color="white" size="sm" className="rounded-full" onClick={sendMessage}>
+                <PaperAirplaneIcon className="w-5 h-5 text-blue-gray-800 transition-transform group-hover:scale-105" />
+              </IconButton>
             </div>
           </div>
         </CardFooter>
       </Card>
-      <ActiveUser open={openMenu} toggleMenu={toggleMenu}/>
+      <ActiveUser open={openMenu} toggleMenu={toggleMenu} user={activeContact}/>
       <MediaDrawer open={openDrawer} toggleDrawer={toggleDrawer} media={mediaType}/>
     </Fragment>
   )
