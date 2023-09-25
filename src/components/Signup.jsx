@@ -228,7 +228,7 @@ export default function Signup() {
         <Button
           className="mt-6 text-white font-semibold bg-cyan-700 flex justify-center items-center" 
           type="submit" disabled={signUpLoading | loading} fullWidth>
-          {loading | signUpLoading && <Spinner className="h-4 w-4 mx-2" color="blue"/>}
+          {(loading | signUpLoading)  ? <Spinner className="h-4 w-4 mx-2" color="blue"/> : null}
           Register 
         </Button>
         <Typography color="gray" className="mt-4 text-center font-normal">
