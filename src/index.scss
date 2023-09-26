@@ -28,11 +28,11 @@
   }
 
   .form-label {
-    @apply bg-white px-2 w-auto h-auto z-10 left-[10px] top-[-10px] leading-[11px] after:content-none;
+    @apply bg-white px-2 w-auto h-auto z-10 left-[10px] top-[-5px] leading-[11px] after:content-none;
   }
 
   .form-input {
-    @apply border rounded-md p-2 bg-white autofill:bg-white;
+    @apply border rounded-md p-2 bg-white autofill:bg-white autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)];
   }
 
   .activeLink > svg {

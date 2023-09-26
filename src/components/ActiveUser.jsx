@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogHeader, DialogBody, Typography, Popover,PopoverHandler,PopoverContent } from "@material-tailwind/react";
+import AvatarPlaceholder from "../assets/images/avatars/avatar2.svg";
 
 export default function ActiveUser({open, toggleMenu, user}) {
 
@@ -13,7 +14,7 @@ export default function ActiveUser({open, toggleMenu, user}) {
   const copyEmail= () => {
     setTimeout(() => {
       setOpenPopover(false)
-    }, 1400)
+    }, 1500)
     navigator.clipboard.writeText(`${user.email}`);
   }
 
@@ -55,9 +56,9 @@ export default function ActiveUser({open, toggleMenu, user}) {
       </DialogHeader>
       <DialogBody className="p-0 rounded-b-lg">
         <img 
-          src={user.image}
+          src={user.image ? user.image : AvatarPlaceholder}
           alt="User"
-          className="max-h-[500px] w-full object-cover object-center rounded-b-lg"
+          className="max-h-[500px] w-fit object-cover object-center mx-auto rounded-b-lg"
         />
       </DialogBody>
     </Dialog>

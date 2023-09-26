@@ -74,7 +74,7 @@ export default function UserContextProvider(props) {
         }
         else {
           localStorage.setItem('userId', doc.id);
-          updateUserActive(doc.id);
+          updateUser(doc.id, { active: true });
         }
       });
       setUsers(data);
@@ -89,15 +89,9 @@ export default function UserContextProvider(props) {
     })
   }
 
-  const updateUserActive = (id) => {
+  const updateUser = async(id, form) => {
     let userDoc = doc(db,'users', id);
-    updateDoc(userDoc, { active: true })
-    .then(() => {
-      console.log("user is activated right now");
-    })
-    .catch(error =>{
-      console.log(error.message)
-    })
+    await updateDoc(userDoc, form);
   }
 
   const getPostion = () => {
@@ -118,9 +112,9 @@ export default function UserContextProvider(props) {
   return(
     <UserContext.Provider 
       value={{ 
-        getPostion, positions, 
         addUser, addUserFlag, addUserResponse, 
-        getUsers, users, getUser, user, loading 
+        getUsers, users, getPostion, positions,
+        getUser, user, updateUser, loading,
       }}>
       {props.children}
     </UserContext.Provider>

@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { Navbar, Avatar, Badge, Tooltip, Button, Typography } from "@material-tailwind/react";
 import { ChatBubbleOvalLeftEllipsisIcon, Cog8ToothIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
 import { NavLink, useNavigate } from "react-router-dom";
@@ -6,10 +6,12 @@ import Logo from "../../../assets/images/logos/logo9.svg";
 import AvatarPlaceholder from "../../../assets/images/avatars/avatar2.svg";
 import PropTypes from 'prop-types';
 import { AuthContext } from '../../Services/AuthStore';
+import { UserContext } from '../../Services/UserStore';
 
 export function AppNavbar() {
 
-  const { SignOut, userData } = useContext(AuthContext);
+  const { SignOut } = useContext(AuthContext);
+  const { getUser, user } = useContext(UserContext);
   const navigate = useNavigate(null);
 
   const handleSignOut = () => {
@@ -18,7 +20,11 @@ export function AppNavbar() {
     })
   }
 
-  return (
+  useEffect(() => {
+    getUser(localStorage.getItem('userId'));
+  }, [])
+
+  return ( 
     <Navbar className="w-15 p-1 rounded-none text-dark rounded-l-lg border-0 border-r-2 border-cyan-600">
       <div className="h-full flex flex-col justify-between items-center align-middle">
         <img 
@@ -33,12 +39,10 @@ export function AppNavbar() {
           </NavLink>
         </div>
         <div className="flex flex-col items-center">
-          <Badge 
-            color="green" 
-            withBorder={true} overlap='circular' placement='top'
-            className="animate-ping !scale-125 !max-w-[3px] !min-w-[1px] !max-h-[3px] !min-h-[1px] opacity-95"
-            >
-            <Avatar src={AvatarPlaceholder} alt="avatar" size="md" className="mb-2"/>
+          <Badge color="green" withBorder={true} overlap='circular'>
+            <Avatar 
+              src={user?.image ? user.image : AvatarPlaceholder} 
+              alt="avatar" size="md" className="mb-2"/>
           </Badge>
           <Tooltip 
             placement="top" 
