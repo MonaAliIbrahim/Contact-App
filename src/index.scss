@@ -32,7 +32,7 @@
   }
 
   .form-input {
-    @apply border rounded-md p-2 bg-white autofill:bg-white autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)];
+    @apply border rounded-md p-2 bg-white autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)] autofill:bg-white;
   }
 
   .activeLink > svg {
