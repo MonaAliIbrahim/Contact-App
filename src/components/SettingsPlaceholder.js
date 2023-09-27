@@ -2,7 +2,7 @@ import { Card, CardHeader, CardBody } from "@material-tailwind/react";
 
 export default function SettingsPlaceholder() {
   return (
-    <Card className="animate-pulse mt-6 bg-secondary h-auto md:min-h-[calc(100%-64px)]">
+    <Card className="animate-pulse mt-6 bg-secondary h-auto md:min-h-[calc(100%-64px)] dark:bg-black">
       <CardHeader color="transparent" className="relative flex justify-center shadow-none">
         <div className="h-52 w-60 rounded-lg bg-gray-500 opacity-50"/>
       </CardHeader>

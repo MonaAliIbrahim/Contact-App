@@ -23,7 +23,7 @@ export default function ContactList() {
           color="cyan" 
           variant="standard"
           placeholder="Search..." 
-          className="pr-8 focus:!border-red-800" 
+          className="pr-8 focus:!border-red-800 dark:text-white" 
           containerProps={{ className: "min-w-[20px]" }}
           onKeyUp={(e) => { setSearchValue(e.target.value) }}
         />

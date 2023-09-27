@@ -36,7 +36,7 @@
   }
 
   .activeLink > svg {
-    @apply text-red-800;
+    @apply text-red-800 dark:text-red-800;
   }
 
   .activeChat > div:not(:first-child) {

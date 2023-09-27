@@ -59,7 +59,7 @@ export default function Settings() {
     <div className="h-full overflow-x-auto p-8">
       {loading && !fireUpdate ? <SettingsPlaceholder/> : user &&
       <Fragment>
-        <Card className="relative mt-6 bg-secondary h-auto md:min-h-[calc(100%-64px)]">
+        <Card className="relative mt-6 bg-secondary h-auto md:min-h-[calc(100%-64px)] dark:bg-black">
           <CardHeader color="transparent" className="relative text-center shadow-none min-h-[150px]">
             <div className="!absolute right-0 top-10 hidden">
               <Input type="file" accept="image/*" ref={inputRef} labelProps={{className:'hidden'}} onChange={ChangeImage}/>
@@ -82,25 +82,25 @@ export default function Settings() {
               <div className="col-span-12 md:col-span-6">
                 <div className="user-info">
                   <Typography variant="h5" className="text-primary text-lg">User Name :</Typography>
-                  <Typography variant="h6" className="capitalize">{user.name}</Typography>
+                  <Typography variant="h6" className="capitalize dark:text-white">{user.name}</Typography>
                 </div>
               </div>
               <div className="col-span-12 md:col-span-6">
                 <div className="user-info">
                   <Typography variant="h5" className="text-primary text-lg">Email :</Typography>
-                  <Typography variant="h6">{user.email}</Typography>
+                  <Typography variant="h6" className="dark:text-white">{user.email}</Typography>
                 </div>
               </div>
               <div className="col-span-12 md:col-span-6">
                 <div className="user-info">
                   <Typography variant="h5" className="text-primary text-lg">Phone Number :</Typography>
-                  <Typography variant="h6">{user.phone}</Typography>
+                  <Typography variant="h6" className="dark:text-white">{user.phone}</Typography>
                 </div>
               </div>
               <div className="col-span-12 md:col-span-6">
                 <div className="user-info">
                   <Typography variant="h5" className="text-primary text-lg">Position :</Typography>
-                  <Typography variant="h6">{user.position}</Typography>
+                  <Typography variant="h6" className="dark:text-white">{user.position}</Typography>
                 </div>
               </div>
             </div>

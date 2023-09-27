@@ -39,7 +39,7 @@ export default function ContactCard({type, searchValue}) {
             <CardHeader 
               key={index}
               color="transparent" floated={false} shadow={false} 
-              className="flex items-center content-start py-0 px-1 m-0 hover:bg-secondary hover:cursor-pointer"
+              className="flex items-center content-start py-0 px-1 m-0 hover:bg-secondary hover:cursor-pointer dark:hover:bg-gray-600"
               onClick={()=> setContact(contact)}
               >
               <Avatar 
@@ -49,10 +49,10 @@ export default function ContactCard({type, searchValue}) {
                 className="mr-2 w-12 h-12"
                 />
               <div className="self-stretch flex flex-col w-full gap-0 !text-sm border-b-[1px] py-2">
-                <Typography variant="h6" className="capitalize text-normal text-gray-900">
+                <Typography variant="h6" className="capitalize text-normal text-gray-900 dark:text-white">
                   {contact.name}
                 </Typography>
-                <Typography variant="paragraph" color="blue-gray" className="text-[13px] font-[500]">
+                <Typography variant="paragraph" color="blue-gray" className="text-[13px] font-[500] dark:text-gray-300">
                   {contact.position}
                 </Typography>
               </div>

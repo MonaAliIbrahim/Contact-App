@@ -70,12 +70,6 @@ export default function Login() {
     }
   }, [validationErrors])
 
-  useEffect(() => {
-    if(signInFlag) {
-      navigate('/');
-    }
-  }, [signInFlag])
-
   return (
     <Card color="white" className="register-card">
       <Typography variant="h4" color="cyan">

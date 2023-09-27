@@ -47,8 +47,8 @@ export default function Chat() {
   return (
     !activeContact ? <DefaultChat/> :
     <Fragment>
-      <Card className="relative flex flex-col h-[calc(100%-24px)] min-w-[350px] m-3 ml-2 rounded-lg bg-secondary">
-        <CardHeader className="m-2 p-2 pb-3 overflow-visible rounded-md bg-transparent shadow-lg shadow-gray-900/10">
+      <Card className="relative flex flex-col h-[calc(100%-24px)] min-w-[350px] m-3 ml-2 rounded-lg bg-secondary dark:bg-black">
+        <CardHeader className="m-2 p-2 pb-3 overflow-visible rounded-md bg-transparent shadow-lg shadow-gray-900/10 dark:bg-gray-400">
           <div className="flex items-center">
             <Button onClick={toggleMenu} variant="outlined" className="p-0 border-0 !outline-none">
               <Avatar 
@@ -92,7 +92,7 @@ export default function Chat() {
         <CardBody className="order-2 z-10 grow self-stretch overflow-y-auto m-2 ml-1 p-2 pb-1">
           <Message messages={messages}/>
         </CardBody>
-        <CardFooter className="order-3 z-20 self-end mx-2 p-2 w-[calc(100%-16px)] rounded-md bg-white">
+        <CardFooter className="order-3 z-20 self-end mx-2 p-2 w-[calc(100%-16px)] rounded-md bg-white dark:bg-gray-400">
           <div className="relative flex">
             <div className="!absolute left-1 top-1 rounded-full border-0 shadow-none z-10">
               <SpeedDial>
@@ -115,7 +115,7 @@ export default function Chat() {
               type="text"
               value={message}
               ref={inputRef}
-              className="px-9 focus:!border-blue-gray-300"
+              className="px-9 focus:!border-blue-gray-300 dark:px-10 dark:placeholder:text-black dark:text-black"
               placeholder="Type your message..."
               labelProps={{className: "hidden"}}
               containerProps={{className: "min-w-0"}}

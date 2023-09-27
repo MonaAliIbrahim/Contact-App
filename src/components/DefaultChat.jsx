@@ -6,7 +6,7 @@ export default function DefaultChat() {
       <img 
         src={DefaultBackground} 
         alt="default chat backgound"
-        className="h-full w-full drop-shadow-2xl contrast-100 grayscale-[45%] rounded-lg object-cover object-center" 
+        className="h-full w-full drop-shadow-2xl contrast-100 grayscale-[45%] rounded-lg object-cover object-center dark:grayscale" 
       />
     </div>
   )
