@@ -24,15 +24,15 @@
 
 @layer utilities {
   .register-card {
-    @apply z-10 p-6 mx-3 w-screen max-w-[500px] sm:w-10/12 md:w-[500px] opacity-[0.92] shadow-md shadow-blue-gray-100;
+    @apply z-10 p-6 mx-3 w-screen max-w-[500px] sm:w-10/12 md:w-[500px] opacity-[0.92] shadow-md shadow-blue-gray-100 dark:bg-gray-600 dark:shadow-blue-gray-600;
   }
 
   .form-label {
-    @apply bg-white px-2 w-auto h-auto z-10 left-[10px] top-[-5px] leading-[11px] after:content-none;
+  @apply bg-white px-2 w-auto h-auto z-10 left-[10px] top-[-5px] leading-[11px] after:content-none dark:bg-gray-600;
   }
 
   .form-input {
-    @apply border rounded-md p-2 bg-white autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)] autofill:bg-white;
+    @apply border rounded-md p-2 bg-white autofill:shadow-[inset_0_0_0px_1000px_rgb(255,255,255)] autofill:bg-white dark:text-black dark:bg-gray-600 dark:autofill:shadow-[inset_0_0_0px_1000px_rgb(117,117,117)] dark:autofill:dark:bg-gray-600;
   }
 
   .activeLink > svg {

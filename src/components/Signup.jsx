@@ -23,7 +23,7 @@ export default function Signup() {
   const renderPositons =  useMemo(() => {
     return (
       positions.sort((a,b) => a.id - b.id).map((position) => (
-        <Option key={position.id} value={position.name}>
+        <Option key={position.id} value={position.name} className="dark:text-white dark:hover:bg-blue-gray-600">
           {position.name}
         </Option>
       ))
@@ -145,7 +145,7 @@ export default function Signup() {
           <Input 
             type="text" size="md" variant="static" label="User Name"
             name="name" autoComplete="off" aria-autocomplete="none"
-            className="form-input" labelProps={{className: 'form-label !leading-[11px]'}}
+            className="form-input" labelProps={{className: 'form-label !leading-[11px] dark:!text-white'}}
             onChange={getFormValue}
           />
           {nameError && 
@@ -157,7 +157,7 @@ export default function Signup() {
           <Input  
             type="email" size="md" variant="static" label="Email Address"
             name="email" autoComplete="off" aria-autocomplete="none"
-            className="form-input" labelProps={{className: 'form-label !leading-[11px]'}}
+            className="form-input" labelProps={{className: 'form-label !leading-[11px] dark:!text-white'}}
             onChange={getFormValue}
           />
           {emailError && 
@@ -169,7 +169,7 @@ export default function Signup() {
           <Input 
             type="tel" size="md" variant="static" label="Mobile Number"
             name="phone" autoComplete="off" aria-autocomplete="none"
-            className="form-input" labelProps={{className: 'form-label !leading-[11px]'}}
+            className="form-input" labelProps={{className: 'form-label !leading-[11px] dark:!text-white'}}
             onChange={getFormValue}
           />
           {phoneError && 
@@ -181,7 +181,8 @@ export default function Signup() {
             <Select 
               size="md" variant="static" name="position" label="Select Your Position"
               className="form-input [&>*:first-child]:left-3 [&>*:first-child]:pt-0" 
-              labelProps={{className: 'form-label !leading-[11px]'}}
+              labelProps={{className: 'form-label !leading-[11px] dark:text-white'}}
+              menuProps={{className: 'dark:!bg-gray-600 dark:border-black'}}
               onChange={getPositionValue}
               >
               {renderPositons}
@@ -195,7 +196,7 @@ export default function Signup() {
             <Input 
               type="password" size="md" variant="static" label="Password" 
               name="password" autoComplete="off" aria-autocomplete="none"
-              className="form-input" labelProps={{className: 'form-label !leading-[11px]'}}
+              className="form-input" labelProps={{className: 'form-label !leading-[11px] dark:!text-white'}}
               onChange={getFormValue}
             />
             {passwordError && 
@@ -206,9 +207,9 @@ export default function Signup() {
         </div> 
         <Checkbox
           label={
-            <Typography variant="small" color="gray" className="flex items-center font-normal mt-4">
+            <Typography variant="small" color="gray" className="flex items-center font-normal mt-4 dark:text-white">
               I agree the
-              <Link to={'/terms-of-service'} className="font-medium transition-colors hover:text-cyan-700">
+              <Link to={'/terms-of-service'} className="font-medium transition-colors hover:text-cyan-700 dark:text-red-800">
                 &nbsp;Terms and Conditions
               </Link>
             </Typography>
@@ -231,7 +232,7 @@ export default function Signup() {
           {(loading | signUpLoading)  ? <Spinner className="h-4 w-4 mx-2" color="blue"/> : null}
           Register 
         </Button>
-        <Typography color="gray" className="mt-4 text-center font-normal">
+        <Typography color="gray" className="mt-4 text-center font-normal dark:!text-white">
           Already have an account?
           <Link to={'/register'} 
             className="font-normal mx-0 px-2 text-red-800 bg-transparent border-0 shadow-none hover:shadow-none hover:text-primary">

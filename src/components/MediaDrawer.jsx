@@ -3,12 +3,12 @@ import { Drawer, Typography, IconButton } from "@material-tailwind/react";
 export default function MediaDrawer({open, toggleDrawer, media}) {
 
   return (
-  <Drawer open={open} onClose={toggleDrawer} placement="right" className="p-4">
+  <Drawer open={open} onClose={toggleDrawer} placement="right" className="p-4 dark:bg-gray-900">
     <div className="mb-6 flex items-center justify-between">
-      <Typography variant="h5" color="blue-gray">
+      <Typography variant="h5" color="blue-gray" className="dark:!text-white">
         {media}...
       </Typography>
-      <IconButton variant="text" color="blue-gray" className="hover:text-red-800" onClick={toggleDrawer}>
+      <IconButton variant="text" color="blue-gray" className="hover:text-red-800 dark:text-white hover:dark:bg-red-800" onClick={toggleDrawer}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

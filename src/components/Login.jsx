@@ -84,7 +84,7 @@ export default function Login() {
             <Input 
               size="md" type="email" variant="static" label="Email Address" 
               name="email" autoComplete="off" aria-autocomplete="none"
-              className="form-input" labelProps={{className: 'form-label !leading-[11px]'}}
+              className="form-input" labelProps={{className: 'form-label !leading-[11px] dark:!text-white'}}
               onChange={getFormValue}
             />
             {emailError &&
@@ -96,7 +96,7 @@ export default function Login() {
             <Input 
               size="md" type="password" variant="static" label="Password" 
               name="password" autoComplete="off" aria-autocomplete="none"
-              className="form-input" labelProps={{className: 'form-label !leading-[11px]'}}
+              className="form-input" labelProps={{className: 'form-label !leading-[11px] dark:!text-white'}}
               onChange={getFormValue}
             />
             {passwordError &&
@@ -115,7 +115,7 @@ export default function Login() {
           {loading && <Spinner className="h-4 w-4 mx-2" color="blue"/>}
           Login 
         </Button>
-        <Typography color="gray" className="mt-4 text-center font-normal">
+        <Typography color="gray" className="mt-4 text-center font-normal dark:text-white">
           You have not an account yet?
           <Link to={'/register/signup'} 
             className="font-normal mx-0 px-2 text-red-800 bg-transparent border-0 shadow-none hover:shadow-none hover:text-primary">

@@ -80,7 +80,7 @@ export default function Chat() {
                   <EllipsisVerticalIcon className="w-6 h-6"/>
                 </IconButton>
               </MenuHandler>
-              <MenuList className="min-w-[150px] shadow-xl">
+              <MenuList className="min-w-[150px] shadow-xl dark:bg-gray-400 dark:text-black dark:border-black">
                 <MenuItem>Search</MenuItem>
                 <MenuItem onClick={() => {toggleDrawer(); setMediaType('Media')} }>Media</MenuItem>
                 <MenuItem onClick={() => {toggleDrawer(); setMediaType('Docs')} }>Docs</MenuItem>

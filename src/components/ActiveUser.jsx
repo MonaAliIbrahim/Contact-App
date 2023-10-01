@@ -22,6 +22,7 @@ export default function ActiveUser({open, toggleMenu, user}) {
     <Dialog size="md" 
       open={open} 
       handler={toggleMenu} 
+      className="dark:bg-gray-500"
       animate={{
         mount: { scale: 1, y: 0 },
         unmount: { scale: 0.9, y: -100 },
