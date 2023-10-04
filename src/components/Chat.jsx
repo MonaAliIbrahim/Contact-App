@@ -26,19 +26,23 @@ export default function Chat() {
   const toggleDrawer = () => setOpenDrawer(!openDrawer);
   const[message, setMessage] = useState('');
   const inputRef = useRef();
+  const sendBtnRef = useRef();
 
-  inputRef.current?.addEventListener("keyup", (event) => {
-    if(event.key === "Enter") {
-      sendMessage();
-    }
-  });
-
-  const sendMessage = () => {
+  const sendMessage = (contact) => {
+    let message = inputRef.current.children[0].value;
     if(message.trim() !== "") {
-      sendMessageService(message);
+      sendMessageService(message, contact.id);
       setMessage('');
     }
   }
+
+  useEffect(() => {
+    inputRef.current?.addEventListener("keyup", (event) => {
+      if(event.key === "Enter") {
+        sendBtnRef.current.click();
+      }
+    });
+  })
 
   useEffect(() => {
     updateMessageService();
@@ -90,7 +94,7 @@ export default function Chat() {
           </div>
         </CardHeader>
         <CardBody className="order-2 z-10 grow self-stretch overflow-y-auto m-2 ml-1 p-2 pb-1">
-          <Message messages={messages}/>
+          <Message messages={messages} activeContact={activeContact}/>
         </CardBody>
         <CardFooter className="order-3 z-20 self-end mx-2 p-2 w-[calc(100%-16px)] rounded-md bg-white dark:bg-gray-400">
           <div className="relative flex">
@@ -122,7 +126,7 @@ export default function Chat() {
               onChange={(e) => setMessage(e.target.value)}
             />
             <div className="!absolute right-1 top-1 rounded-full border-0 shadow-none z-10">
-              <IconButton color="white" size="sm" className="rounded-full" onClick={sendMessage}>
+              <IconButton color="white" size="sm" className="rounded-full" ref={sendBtnRef} onClick={() => sendMessage(activeContact)}>
                 <PaperAirplaneIcon className="w-5 h-5 text-blue-gray-800 transition-transform group-hover:scale-105" />
               </IconButton>
             </div>

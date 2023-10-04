@@ -6,7 +6,7 @@ export default function ContactContextProvider(props) {
 
   const [activeContact, setActiveContact] = useState(null);
 
-  const setContact= (contact) => {
+  const setContact = (contact) => {
     setActiveContact(contact);
   }
 
